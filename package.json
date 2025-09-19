@@ -4,9 +4,12 @@
   "main": "index.ts",
   "scripts": {
     "start": "expo start",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
-    "web": "expo start --web"
+    "prebuild": "expo prebuild",
+    "build:android": "expo run:android",
+    "build:ios": "expo run:ios"
+  },
+  "engines": {
+    "node": ">=22"
   },
   "dependencies": {
     "expo": "~54.0.9",
@@ -16,8 +19,17 @@
     "react-native": "0.81.4"
   },
   "devDependencies": {
+    "@eslint/js": "^9.36.0",
     "@types/react": "~19.1.0",
-    "typescript": "~5.9.2"
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-unicorn": "^61.0.2",
+    "prettier": "^3.6.2",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.44.0"
   },
   "private": true
 }
