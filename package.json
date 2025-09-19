@@ -6,11 +6,16 @@
     "start": "expo start",
     "prebuild": "expo prebuild",
     "build:android": "expo run:android",
-    "build:ios": "expo run:ios"
+    "build:ios": "expo run:ios",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "tsc": "tsc --noEmit",
+    "check": "pnpm concurrently --kill-others-on-fail pnpm:lint pnpm:tsc"
   },
   "engines": {
     "node": ">=22"
   },
+  "packageManager": "pnpm@10.17.0",
   "dependencies": {
     "expo": "~54.0.9",
     "expo-dev-client": "~6.0.12",
@@ -21,6 +26,7 @@
   "devDependencies": {
     "@eslint/js": "^9.36.0",
     "@types/react": "~19.1.0",
+    "concurrently": "^9.2.1",
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
