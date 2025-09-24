@@ -27,4 +27,6 @@ const colors = {
   },
 } as const;
 
+export type ColorKey = keyof typeof colors;
+
 export default colors;

@@ -1,0 +1,91 @@
+// components/AppButton.tsx
+import { ReactNode } from "react";
+import {
+  ActivityIndicator,
+  GestureResponderEvent,
+  StyleSheet,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
+
+import colors, { ColorKey } from "@/styles/colors";
+
+type ButtonVariant = Extract<
+  ColorKey,
+  "primary" | "secondary" | "success" | "info" | "warning" | "danger"
+>;
+
+type ButtonMode = "solid" | "outline";
+
+type StyledButtonProps = {
+  title: string;
+  onPress: (event: GestureResponderEvent) => void;
+  variant?: ButtonVariant;
+  mode?: ButtonMode;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
+  disabled?: boolean;
+  loading?: boolean;
+};
+
+export default function StyledButton({
+  title,
+  onPress,
+  variant = "primary",
+  mode = "solid",
+  style,
+  textStyle,
+  disabled = false,
+  loading = false,
+}: StyledButtonProps): ReactNode {
+  const isDisabled = disabled || loading;
+
+  const backgroundColor = mode === "solid" ? colors[variant] : "transparent";
+
+  const borderColor = isDisabled ? colors[variant] : colors.gray[500];
+
+  const textColor = mode === "solid" ? colors.white : colors[variant];
+
+  return (
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={[
+        defaultStyles.button,
+        {
+          backgroundColor,
+          borderColor,
+          opacity: isDisabled ? 0.6 : 1,
+        },
+        style,
+      ]}
+      onPress={onPress}
+      disabled={isDisabled}
+    >
+      {loading ? (
+        <ActivityIndicator size="small" color={textColor} />
+      ) : (
+        <Text style={[defaultStyles.text, { color: textColor }, textStyle]}>
+          {title}
+        </Text>
+      )}
+    </TouchableOpacity>
+  );
+}
+
+const defaultStyles = StyleSheet.create({
+  button: {
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    borderWidth: 2,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: "600",
+  },
+});
