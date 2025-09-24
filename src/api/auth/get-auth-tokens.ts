@@ -1,7 +1,5 @@
-import {
-  AuthTokenResponse,
-  authTokenResponseSchema,
-} from "@/types/auth-token-response";
+import { z } from "zod";
+
 import { failure, Result, success } from "@/types/result";
 import { API_BASE_URL } from "@/utils/constants/api";
 import {
@@ -10,6 +8,20 @@ import {
 } from "@/utils/constants/auth";
 
 const AUTH_TOKEN_API_URL = `${API_BASE_URL}/auth/v1/oauth2/v2.0/token/customer`;
+
+const authTokenResponseSchema = z
+  .object({
+    access_token: z.string(),
+    refresh_token: z.string(),
+    id_token: z.string(),
+  })
+  .transform((data) => ({
+    accessToken: data.access_token,
+    refreshToken: data.refresh_token,
+    idToken: data.id_token,
+  }));
+
+type AuthTokenResponse = z.infer<typeof authTokenResponseSchema>;
 
 export async function getAuthTokens(
   code: string,
