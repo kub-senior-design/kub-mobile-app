@@ -20,6 +20,10 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.anonymous.kubmobileapp"
     },
-    "scheme": "msauth.org.kub.customerapp"
+    "scheme": "msauth.org.kub.customerapp",
+    "plugins": [
+      "expo-secure-store",
+      "expo-web-browser"
+    ]
   }
 }
