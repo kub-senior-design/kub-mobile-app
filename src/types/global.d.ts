@@ -1,7 +1,2 @@
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
-
-declare namespace NodeJS {
-  interface ProcessEnv {
-    EXPO_PUBLIC_ENVIRONMENT: "dev" | "test" | "stage" | "prod";
-  }
-}
+// allow imports of images without TypeScript errors
+declare module "*.png";

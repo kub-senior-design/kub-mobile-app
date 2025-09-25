@@ -1,4 +1,3 @@
-// components/AppButton.tsx
 import { ReactNode } from "react";
 import {
   ActivityIndicator,
@@ -17,11 +16,11 @@ type ButtonVariant = Extract<
   "primary" | "secondary" | "success" | "info" | "warning" | "danger"
 >;
 
-type ButtonMode = "solid" | "outline";
+type ButtonMode = "solid" | "outline" | "ghost";
 
 type StyledButtonProps = {
   title: string;
-  onPress: (event: GestureResponderEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
   variant?: ButtonVariant;
   mode?: ButtonMode;
   style?: ViewStyle;
@@ -44,7 +43,7 @@ export default function StyledButton({
 
   const backgroundColor = mode === "solid" ? colors[variant] : "transparent";
 
-  const borderColor = isDisabled ? colors[variant] : colors.gray[500];
+  const borderColor = mode === "outline" ? colors[variant] : "transparent";
 
   const textColor = mode === "solid" ? colors.white : colors[variant];
 
@@ -56,6 +55,7 @@ export default function StyledButton({
         {
           backgroundColor,
           borderColor,
+          borderWidth: mode === "outline" ? 2 : 0,
           opacity: isDisabled ? 0.6 : 1,
         },
         style,
@@ -79,7 +79,6 @@ const defaultStyles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
-    borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",

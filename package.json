@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "tsc": "tsc --noEmit",
-    "check": "pnpm concurrently --kill-others-on-fail pnpm:lint pnpm:tsc"
+    "check": "pnpm concurrently --kill-others-on-fail pnpm:lint pnpm:tsc",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "engines": {
     "node": ">=22"

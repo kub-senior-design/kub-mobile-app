@@ -67,14 +67,31 @@ export PATH="$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$PATH"
 alias adb="/mnt/c/Users/patel/AppData/Local/Android/Sdk/platform-tools/adb.exe"
 ```
 
-Then, go to the `platform-tools` directory in WSl and create a symlink for the `adb` executable.
+Then, go to the `platform-tools` and `build-tools` directory in WSl and create symlinks for `.exe` files
 
 ```zsh
 cd /mnt/c/Users/patel/AppData/Local/Android/Sdk/platform-tools
 ln -s adb.exe adb
+
+sudo apt-get install ninja-build
+
+# all build tool EXEs need to be mapped to a version that doesn't have the exe
+# check that build-tools versions you have; I have 35, 36, and 36.1.0
+cd /mnt/c/Users/patel/AppData/Local/Android/Sdk/build-tools/35.0.0
+for f in *.exe; do ln -sf "$f" "${f%.exe}"; done
+
+cd /mnt/c/Users/patel/AppData/Local/Android/Sdk/build-tools/36.0.0
+for f in *.exe; do ln -sf "$f" "${f%.exe}"; done
+
+cd /mnt/c/Users/patel/AppData/Local/Android/Sdk/build-tools/36.1.0
+for f in *.exe; do ln -sf "$f" "${f%.exe}"; done
+
+
 ```
 
 This is needed as when you launch the Android emulator from Expo, it will look for an executable named `adb`. Since the actual executable is called `adb.exe`, we have to symlink it.
+
+The second part is needed so that `pnpm build:android` work
 
 ### Running the App
 
