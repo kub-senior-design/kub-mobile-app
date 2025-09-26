@@ -43,8 +43,8 @@ export default function Login(): ReactNode {
           style={styles.loginButton}
         />
         <View style={styles.buttonContainer}>
-          <StyledButton title="NEED HELP?" variant="secondary" mode="ghost" />
-          <StyledButton title="CREATE LOGIN" variant="secondary" mode="ghost" />
+          <StyledButton title="NEED HELP?" variant="link" mode="ghost" />
+          <StyledButton title="CREATE LOGIN" variant="link" mode="ghost" />
         </View>
       </View>
     </ImageBackground>
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 24,
+    paddingBottom: 24, // make login button more centered
   },
   logo: {
     width: 160,

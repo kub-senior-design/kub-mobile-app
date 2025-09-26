@@ -1,6 +1,15 @@
 const colors = {
+  background: "#0a1d36",
+  backgroundSecondary: "#0c1827",
+
   primary: "#00447c",
+  primaryEmphasis: "#668fb0",
+
   secondary: "#94add2",
+  secondaryEmphasis: "#97bddc",
+
+  link: "#aed5fe",
+  linkHover: "#94add2",
 
   white: "#ffffff",
   black: "#000000",
@@ -13,18 +22,6 @@ const colors = {
   green: "#4b8847",
   orange: "#f70",
   cyan: "#057cff",
-
-  gray: {
-    100: "#f8f9fa",
-    200: "#e9ecef",
-    300: "#dee2e6",
-    400: "#ced4da",
-    500: "#adb5bd",
-    600: "#6c757d",
-    700: "#495057",
-    800: "#343a40",
-    900: "#212529",
-  },
 } as const;
 
 export type ColorKey = keyof typeof colors;

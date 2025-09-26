@@ -52,56 +52,19 @@ All environment variables must be prefixed with `EXPO_PUBLIC_` to be bundled wit
 
 [Follow the Expo iOS Simulator Documentation](https://docs.expo.dev/workflow/ios-simulator/) to set up the iOS emulator.
 
-### Developing on WSL
-
-If developing on WSL, follow the Windows set up instructions to get the Android Emulator on your device and then follow the Linux section that tells you to install Watchman. The easiest way to install Watchman is to download Homebrew and then use Homebrew to install it.
-
-Once you have watchman installed, add the following environment variables to your shell's configuration (`.zshrc` or `.bashrc`):
-
-Change the paths to point to your own local installation of the Android SDK.
-
-```zsh
-export ANDROID_HOME="/mnt/c/Users/patel/AppData/Local/Android/Sdk"
-export ANDROID_SDK_ROOT="/mnt/c/Users/patel/AppData/Local/Android/Sdk"
-export PATH="$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$PATH"
-alias adb="/mnt/c/Users/patel/AppData/Local/Android/Sdk/platform-tools/adb.exe"
-```
-
-Then, go to the `platform-tools` and `build-tools` directory in WSl and create symlinks for `.exe` files
-
-```zsh
-cd /mnt/c/Users/patel/AppData/Local/Android/Sdk/platform-tools
-ln -s adb.exe adb
-
-sudo apt-get install ninja-build
-
-# all build tool EXEs need to be mapped to a version that doesn't have the exe
-# check that build-tools versions you have; I have 35, 36, and 36.1.0
-cd /mnt/c/Users/patel/AppData/Local/Android/Sdk/build-tools/35.0.0
-for f in *.exe; do ln -sf "$f" "${f%.exe}"; done
-
-cd /mnt/c/Users/patel/AppData/Local/Android/Sdk/build-tools/36.0.0
-for f in *.exe; do ln -sf "$f" "${f%.exe}"; done
-
-cd /mnt/c/Users/patel/AppData/Local/Android/Sdk/build-tools/36.1.0
-for f in *.exe; do ln -sf "$f" "${f%.exe}"; done
-
-
-```
-
-This is needed as when you launch the Android emulator from Expo, it will look for an executable named `adb`. Since the actual executable is called `adb.exe`, we have to symlink it.
-
-The second part is needed so that `pnpm build:android` work
-
 ### Running the App
+
+Before you run the app, you should execute a build of the project so things such as DevTools works.
+
+Run `pnpm build:android` or `pnpm build:ios` to do a full build.
+
+You only have to do this once unless you add a change that touches native modules.
 
 To run the app, run `pnpm start` and follow the instructions to launch the iOS or Android emulator.
 
-There are times you may need to run a prebuild or full build.
+There are times you may need to run a prebuild instead of a full build.
 
 Run `pnpm prebuild`to perform a prebuild.
-
-Run `pnpm build:android` or `pnpm build:ios` to do a full build.
 
 ### Contributing
 

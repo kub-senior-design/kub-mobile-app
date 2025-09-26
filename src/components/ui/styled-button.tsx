@@ -11,10 +11,7 @@ import {
 
 import colors, { ColorKey } from "@/styles/colors";
 
-type ButtonVariant = Extract<
-  ColorKey,
-  "primary" | "secondary" | "success" | "info" | "warning" | "danger"
->;
+type ButtonVariant = ColorKey;
 
 type ButtonMode = "solid" | "outline" | "ghost";
 
