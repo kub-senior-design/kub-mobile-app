@@ -91,10 +91,3 @@ Run `pnpm lint` to check for linting errors.
 Run `pnpm lint:fix` to attempt to automatically fix linting errors.
 
 Run `pnpm tsc` to check for type errors.
-
-### Testing
-
-#### Debugging
-
-The `.vscode/launch.json` file is configured to run Next.js in debug mode. This can let you step through your code line by line and inspect variables.
-To start debug mode, navigate to the `Run and Debug` tab in VSCode, select the mode, and click the green play button.
