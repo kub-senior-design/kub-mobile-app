@@ -1,12 +1,15 @@
 import { ReactNode } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import Login from "@/components/login";
+import RootNavigator from "@/navigators/root-navigator";
 import SessionProvider from "@/providers/session-provider";
 
 export default function App(): ReactNode {
   return (
-    <SessionProvider>
-      <Login />
-    </SessionProvider>
+    <SafeAreaProvider>
+      <SessionProvider>
+        <RootNavigator />
+      </SessionProvider>
+    </SafeAreaProvider>
   );
 }

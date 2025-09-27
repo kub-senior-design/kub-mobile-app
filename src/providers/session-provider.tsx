@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { AuthRequest, useAuthRequest } from "expo-auth-session";
+import { useAuthRequest } from "expo-auth-session";
 import { openBrowserAsync } from "expo-web-browser";
 import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
 import { Alert } from "react-native";
@@ -16,7 +16,7 @@ import {
 } from "@/utils/constants/auth";
 
 export type SessionContextType = {
-  request: AuthRequest | null; // needed to see if login button is active or not
+  isAuthenticating: boolean;
   login: () => Promise<void>;
   logout: () => Promise<void>;
   apiClient: AxiosInstance;
@@ -34,6 +34,9 @@ type SessionProviderProps = {
 export default function SessionProvider({
   children,
 }: SessionProviderProps): ReactNode {
+  // state
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
   // tokens
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [refreshToken, setRefreshToken] = useState<string | null>(null);
@@ -56,6 +59,8 @@ export default function SessionProvider({
         return;
       }
 
+      setIsAuthenticating(true);
+
       const { code } = response.params;
 
       const codeVerifier = request?.codeVerifier;
@@ -63,6 +68,7 @@ export default function SessionProvider({
       if (!codeVerifier) {
         console.error("No code verifier found when signing in.");
         Alert.alert("An error occurred signing in. Please try again later.");
+        setIsAuthenticating(false);
         return;
       }
 
@@ -74,12 +80,15 @@ export default function SessionProvider({
       if (authTokensError !== null) {
         console.error("Error fetching auth tokens", authTokensError);
         Alert.alert("An error occurred signing in. Please try again later.");
+        setIsAuthenticating(false);
         return;
       }
 
       setAccessToken(authTokens.accessToken);
       setRefreshToken(authTokens.refreshToken);
       setIdToken(authTokens.idToken);
+
+      setIsAuthenticating(false);
     };
 
     void fetchToken();
@@ -158,7 +167,7 @@ export default function SessionProvider({
 
   return (
     <SessionContext.Provider
-      value={{ request, login, logout, apiClient, user }}
+      value={{ isAuthenticating, login, logout, apiClient, user }}
     >
       {children}
     </SessionContext.Provider>

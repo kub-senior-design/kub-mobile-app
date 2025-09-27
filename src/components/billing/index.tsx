@@ -1,0 +1,82 @@
+import { StaticScreenProps, useNavigation } from "@react-navigation/native";
+import { ReactNode } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import colors from "../../styles/colors";
+import LinkList, { LinkOption } from "../ui/link-list";
+
+type BillingProps = StaticScreenProps<undefined>;
+
+export default function Billing(_props: BillingProps): ReactNode {
+  const navigation = useNavigation();
+
+  const billingLinkOptions: LinkOption[] = [
+    {
+      title: "Bills & Payments",
+      onPress: () =>
+        navigation.navigate("LoggedInTabs", {
+          screen: "BillingStack",
+          params: {
+            screen: "BillsAndPaymentsScreen",
+          },
+        }),
+    },
+    {
+      title: "Payment Methods",
+      onPress: () =>
+        navigation.navigate("LoggedInTabs", {
+          screen: "BillingStack",
+          params: {
+            screen: "PaymentMethodsScreen",
+          },
+        }),
+    },
+    {
+      title: "Bill & Payment Programs",
+      onPress: () =>
+        navigation.navigate("LoggedInTabs", {
+          screen: "BillingStack",
+          params: {
+            screen: "BillAndPaymentProgramsScreen",
+          },
+        }),
+    },
+    {
+      title: "Offers and Promotions",
+      onPress: () =>
+        navigation.navigate("LoggedInTabs", {
+          screen: "BillingStack",
+          params: {
+            screen: "OffersAndPromotionsScreen",
+          },
+        }),
+    },
+  ];
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.content}>
+        <Text style={styles.header}>Billing</Text>
+        <LinkList data={billingLinkOptions} />
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  content: {
+    flex: 1,
+  },
+  header: {
+    fontSize: 34,
+    fontWeight: "bold",
+    color: colors.white,
+    marginTop: 20,
+    marginBottom: 20,
+  },
+});

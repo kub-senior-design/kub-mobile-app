@@ -51,6 +51,15 @@ export default defineConfig(
       "@typescript-eslint/await-thenable": "error",
       "@typescript-eslint/require-await": "error",
       "@typescript-eslint/explicit-function-return-type": "error",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
+      ],
     },
   },
 );
