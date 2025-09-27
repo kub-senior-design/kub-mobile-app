@@ -1,28 +1,23 @@
+import { StaticScreenProps, useNavigation } from "@react-navigation/native";
 import { ReactNode } from "react";
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, View } from "react-native";
 
 import useSession from "@/hooks/use-session";
 
 import backgroundImage from "../../../assets/images/background-image.png";
 import smallLogo from "../../../assets/images/logo/logo-small.png";
 import StyledButton from "../ui/styled-button";
+import VersionDisplay from "./version-display";
 
 const BACKGROUND_IMAGE_PATH = Image.resolveAssetSource(backgroundImage).uri;
 
 const SMALL_LOGO_PATH = Image.resolveAssetSource(smallLogo).uri;
 
-export default function Login(): ReactNode {
-  const { login, logout, user } = useSession();
+type LoginProps = StaticScreenProps<undefined>;
 
-  if (user) {
-    return (
-      <View style={styles.container}>
-        <Text>Logged in</Text>
-        <Text>{JSON.stringify(user, null, 2)}</Text>
-        <StyledButton title="Logout" onPress={() => logout()} variant="info" />
-      </View>
-    );
-  }
+export default function Login(_props: LoginProps): ReactNode {
+  const { isAuthenticating, login } = useSession();
+  const navigation = useNavigation();
 
   return (
     <ImageBackground
@@ -38,36 +33,50 @@ export default function Login(): ReactNode {
         />
         <StyledButton
           title="LOGIN"
-          onPress={() => login()}
+          onPress={login}
           variant="info"
           style={styles.loginButton}
+          loading={isAuthenticating}
         />
         <View style={styles.buttonContainer}>
-          <StyledButton title="NEED HELP?" variant="link" mode="ghost" />
-          <StyledButton title="CREATE LOGIN" variant="link" mode="ghost" />
+          <StyledButton
+            title="NEED HELP?"
+            variant="link"
+            mode="ghost"
+            onPress={() =>
+              navigation.navigate("LoggedOutStack", { screen: "NeedHelpStack" })
+            }
+          />
+          <StyledButton
+            title="CREATE LOGIN"
+            variant="link"
+            mode="ghost"
+            onPress={() =>
+              navigation.navigate("LoggedOutStack", {
+                screen: "CreateLoginScreen",
+              })
+            }
+          />
         </View>
       </View>
+      <VersionDisplay />
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   background: {
     flex: 1,
     width: "100%",
     height: "100%",
   },
   overlay: {
+    width: "100%",
+    height: "100%",
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 24,
-    paddingBottom: 24, // make login button more centered
   },
   logo: {
     width: 160,
@@ -81,5 +90,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 16,
     justifyContent: "space-around",
+    marginTop: 12,
   },
 });

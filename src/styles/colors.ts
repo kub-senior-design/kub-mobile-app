@@ -22,6 +22,8 @@ const colors = {
   green: "#4b8847",
   orange: "#f70",
   cyan: "#057cff",
+
+  gray: "#3a3a3a",
 } as const;
 
 export type ColorKey = keyof typeof colors;
