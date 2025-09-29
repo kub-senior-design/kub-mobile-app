@@ -47,6 +47,7 @@ export async function getAuthTokens(
 
     return success(tokens);
   } catch (error) {
+    console.error("Error in getAuthTokens", error);
     return failure(error);
   }
 }
@@ -72,6 +73,7 @@ export async function refreshAuthTokens(
 
     return success(tokens);
   } catch (error) {
+    console.error("Error in refreshAuthTokens", error);
     return failure(error);
   }
 }
