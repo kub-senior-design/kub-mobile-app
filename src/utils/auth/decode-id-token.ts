@@ -18,6 +18,7 @@ export default function decodeIdToken(
 
     return success(user);
   } catch (error) {
+    console.error("Error in decodeIdToken", error);
     return failure(error);
   }
 }

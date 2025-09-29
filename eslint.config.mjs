@@ -1,6 +1,7 @@
 // @ts-check
 
 import eslint from "@eslint/js";
+import pluginQuery from "@tanstack/eslint-plugin-query";
 import { defineConfig } from "eslint/config";
 import eslintPluginImport from "eslint-plugin-import";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
@@ -14,6 +15,7 @@ export default defineConfig(
   tseslint.configs.recommended,
   tseslint.configs.stylistic,
   eslintPluginUnicorn.configs.recommended,
+  ...pluginQuery.configs["flat/recommended"],
   eslintPluginPrettierRecommended,
 
   // enable typed linting

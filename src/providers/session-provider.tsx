@@ -78,7 +78,6 @@ export default function SessionProvider({
       );
 
       if (authTokensError !== null) {
-        console.error("Error fetching auth tokens", authTokensError);
         Alert.alert("An error occurred signing in. Please try again later.");
         setIsAuthenticating(false);
         return;
@@ -130,7 +129,6 @@ export default function SessionProvider({
         await refreshAuthTokens(refreshToken);
 
       if (newAuthTokensError !== null) {
-        console.error("Error refreshing auth tokens", newAuthTokensError);
         await logout();
         throw error;
       }
