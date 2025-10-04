@@ -73,12 +73,12 @@ export default function StyledButton({
 
 const defaultStyles = StyleSheet.create({
   button: {
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 8,
     alignItems: "center",
-    justifyContent: "center",
+    borderRadius: 8,
     flexDirection: "row",
+    justifyContent: "center",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
   },
   text: {
     fontSize: 16,

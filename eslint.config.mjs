@@ -1,10 +1,14 @@
 // @ts-check
 
+import { fixupPluginRules } from "@eslint/compat";
 import eslint from "@eslint/js";
 import pluginQuery from "@tanstack/eslint-plugin-query";
 import { defineConfig } from "eslint/config";
 import eslintPluginImport from "eslint-plugin-import";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import eslintPluginReact from "eslint-plugin-react";
+// @ts-expect-error eslint-plugin-react-native is not typed
+import eslintPluginReactNative from "eslint-plugin-react-native";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
 import tseslint from "typescript-eslint";
@@ -15,6 +19,7 @@ export default defineConfig(
   tseslint.configs.recommended,
   tseslint.configs.stylistic,
   eslintPluginUnicorn.configs.recommended,
+  eslintPluginReact.configs.flat.recommended,
   ...pluginQuery.configs["flat/recommended"],
   eslintPluginPrettierRecommended,
 
@@ -32,6 +37,7 @@ export default defineConfig(
     plugins: {
       "simple-import-sort": simpleImportSort,
       import: eslintPluginImport,
+      "react-native": fixupPluginRules(eslintPluginReactNative),
     },
     rules: {
       // Formatting and style rules
@@ -62,6 +68,18 @@ export default defineConfig(
           varsIgnorePattern: "^_",
         },
       ],
+
+      // react rules
+      "react/react-in-jsx-scope": "off",
+
+      // react native rules
+      "react-native/no-color-literals": "error",
+      "react-native/no-inline-styles": "off",
+      "react-native/no-raw-text": "error",
+      "react-native/no-single-element-style-arrays": "error",
+      "react-native/no-unused-styles": "error",
+      "react-native/sort-styles": "error",
+      "react-native/split-platform-components": "error",
     },
   },
 );
