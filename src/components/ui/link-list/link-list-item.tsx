@@ -36,33 +36,28 @@ export default function LinkListItem({
 }
 
 const styles = StyleSheet.create({
-  listItem: {
-    paddingVertical: 16,
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  listItemWithBorder: {
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray,
-  },
-  itemContent: {
-    flexDirection: "row",
-    flex: 1,
-    alignItems: "center",
-  },
-  itemTitle: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: colors.white,
-  },
-  itemSubtitle: {
-    fontSize: 14,
-    color: colors.secondary,
-    marginTop: 2,
-  },
   chevron: {
     marginLeft: "auto",
+  },
+  itemContent: {
+    alignItems: "center",
+    flexDirection: "row",
+    flex: 1,
+  },
+  itemTitle: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: "500",
+  },
+  listItem: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+  },
+  listItemWithBorder: {
+    borderBottomColor: colors.gray,
+    borderBottomWidth: 1,
   },
 });

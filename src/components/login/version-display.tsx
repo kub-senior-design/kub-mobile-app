@@ -34,18 +34,18 @@ export default function VersionDisplay(): ReactNode {
 const styles = StyleSheet.create({
   // center it horizontally
   container: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 36,
     alignItems: "center",
+    bottom: 36,
     justifyContent: "flex-end",
-  },
-  versionText: {
-    color: colors.white,
+    left: 0,
+    position: "absolute",
+    right: 0,
+    top: 0,
   },
   environmentText: {
     color: colors.danger,
+  },
+  versionText: {
+    color: colors.white,
   },
 });

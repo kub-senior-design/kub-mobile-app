@@ -66,17 +66,17 @@ export default function Billing(_props: BillingProps): ReactNode {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: colors.background,
+    flex: 1,
   },
   content: {
     flex: 1,
   },
   header: {
+    color: colors.white,
     fontSize: 34,
     fontWeight: "bold",
-    color: colors.white,
-    marginTop: 20,
     marginBottom: 20,
+    marginTop: 20,
   },
 });

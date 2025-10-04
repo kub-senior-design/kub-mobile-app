@@ -67,29 +67,29 @@ export default function Login(_props: LoginProps): ReactNode {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    width: "100%",
     height: "100%",
-  },
-  overlay: {
-    width: "100%",
-    height: "100%",
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 24,
-  },
-  logo: {
-    width: 160,
-    height: 160,
-  },
-  loginButton: {
     width: "100%",
   },
   buttonContainer: {
-    width: "100%",
     flexDirection: "row",
     gap: 16,
     justifyContent: "space-around",
     marginTop: 12,
+    width: "100%",
+  },
+  loginButton: {
+    width: "100%",
+  },
+  logo: {
+    height: 160,
+    width: 160,
+  },
+  overlay: {
+    alignItems: "center",
+    flex: 1,
+    height: "100%",
+    justifyContent: "center",
+    paddingHorizontal: 24,
+    width: "100%",
   },
 });
