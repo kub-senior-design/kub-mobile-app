@@ -30,7 +30,7 @@
     "expo-application": "~7.0.7",
     "expo-auth-session": "~7.0.8",
     "expo-crypto": "~15.0.7",
-    "expo-dev-client": "~6.0.12",
+    "expo-dev-client": "~6.0.13",
     "expo-secure-store": "~15.0.7",
     "expo-status-bar": "~3.0.8",
     "expo-web-browser": "~15.0.7",
