@@ -5,6 +5,8 @@ import { z } from "zod";
 import { failure, Result, success } from "@/types/result";
 import { BASE_URL } from "@/utils/constants/api";
 
+const CACHED_OUTAGE_DATA_URL = `${BASE_URL}/outage-data/data.json`;
+
 const ElectricOutageSchema = z.object({
   id: z.string(),
   customerCount: z.string(),
@@ -63,9 +65,7 @@ async function getOutageData(
   axios: AxiosInstance,
 ): Promise<Result<GetOutageDataResponse>> {
   try {
-    const cachedOutageDataUrl = `${BASE_URL}/outage-data/data.json`;
-
-    const response = await axios.get(cachedOutageDataUrl);
+    const response = await axios.get(CACHED_OUTAGE_DATA_URL);
 
     const outageDataResponse = getOutageDataResponseValidator.parse(
       response.data,
