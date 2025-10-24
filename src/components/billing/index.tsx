@@ -3,23 +3,21 @@ import { ReactNode } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { NavigationType } from "@/types/navigation";
+
 import colors from "../../styles/colors";
 import LinkList, { LinkOption } from "../ui/link-list";
 
 type BillingProps = StaticScreenProps<undefined>;
 
-export default function Billing(_props: BillingProps): ReactNode {
-  const navigation = useNavigation();
-
-  const billingLinkOptions: LinkOption[] = [
+function getBillingLinkOptions(navigation: NavigationType): LinkOption[] {
+  return [
     {
       title: "Bills & Payments",
       onPress: () =>
         navigation.navigate("LoggedInTabs", {
           screen: "BillingStack",
-          params: {
-            screen: "BillsAndPaymentsScreen",
-          },
+          params: { screen: "BillsAndPaymentsScreen" },
         }),
     },
     {
@@ -27,9 +25,7 @@ export default function Billing(_props: BillingProps): ReactNode {
       onPress: () =>
         navigation.navigate("LoggedInTabs", {
           screen: "BillingStack",
-          params: {
-            screen: "PaymentMethodsScreen",
-          },
+          params: { screen: "PaymentMethodsScreen" },
         }),
     },
     {
@@ -37,22 +33,25 @@ export default function Billing(_props: BillingProps): ReactNode {
       onPress: () =>
         navigation.navigate("LoggedInTabs", {
           screen: "BillingStack",
-          params: {
-            screen: "BillAndPaymentProgramsScreen",
-          },
+          params: { screen: "BillAndPaymentProgramsScreen" },
         }),
     },
+
     {
       title: "Offers and Promotions",
       onPress: () =>
         navigation.navigate("LoggedInTabs", {
           screen: "BillingStack",
-          params: {
-            screen: "OffersAndPromotionsScreen",
-          },
+          params: { screen: "OffersAndPromotionsScreen" },
         }),
     },
   ];
+}
+
+export default function Billing(_props: BillingProps): ReactNode {
+  const navigation = useNavigation();
+
+  const billingLinkOptions = getBillingLinkOptions(navigation);
 
   return (
     <SafeAreaView style={styles.container}>
