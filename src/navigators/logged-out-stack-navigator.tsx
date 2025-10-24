@@ -30,4 +30,5 @@ export const LoggedOutStackNavigator = createNativeStackNavigator({
     headerShown: false,
   },
 });
+
 export default LoggedOutStackNavigator;
