@@ -7,6 +7,7 @@ import { NavigationType } from "@/types/navigation";
 
 import colors from "../../styles/colors";
 import LinkList, { LinkOption } from "../ui/link-list";
+import StyledTextInput from "../ui/styled-text-input";
 
 type BillingProps = StaticScreenProps<undefined>;
 
@@ -58,6 +59,16 @@ export default function Billing(_props: BillingProps): ReactNode {
       <View style={styles.content}>
         <Text style={styles.header}>Billing</Text>
         <LinkList data={billingLinkOptions} />
+        <StyledTextInput
+          label="Account Number"
+          error="Account Number is required"
+          placeholder="Enter your account number"
+        />
+        <StyledTextInput
+          label="Feedback"
+          placeholder="Enter your feedback"
+          multiline
+        />
       </View>
     </SafeAreaView>
   );

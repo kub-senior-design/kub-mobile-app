@@ -15,7 +15,7 @@ function getNeedHelpLinkOptions(navigation: NavigationType): LinkOption[] {
       onPress: () =>
         navigation.navigate("LoggedOutStack", {
           screen: "NeedHelpStack",
-          params: { screen: "ForgotPasswordScreen" as const },
+          params: { screen: "ForgotPasswordScreen" },
         }),
     },
     {
@@ -23,7 +23,7 @@ function getNeedHelpLinkOptions(navigation: NavigationType): LinkOption[] {
       onPress: () =>
         navigation.navigate("LoggedOutStack", {
           screen: "NeedHelpStack",
-          params: { screen: "ForgotUsernameScreen" as const },
+          params: { screen: "ForgotUsernameScreen" },
         }),
     },
     {
@@ -31,7 +31,7 @@ function getNeedHelpLinkOptions(navigation: NavigationType): LinkOption[] {
       onPress: () =>
         navigation.navigate("LoggedOutStack", {
           screen: "NeedHelpStack",
-          params: { screen: "CreateLoginScreen" as const },
+          params: { screen: "CreateLoginScreen" },
         }),
     },
     {
@@ -39,7 +39,7 @@ function getNeedHelpLinkOptions(navigation: NavigationType): LinkOption[] {
       onPress: () =>
         navigation.navigate("LoggedOutStack", {
           screen: "NeedHelpStack",
-          params: { screen: "StartServiceScreen" as const },
+          params: { screen: "StartServiceScreen" },
         }),
     },
   ];
